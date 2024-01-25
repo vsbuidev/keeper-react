@@ -8,13 +8,14 @@ html {
 }
 body {
   background: #eee;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   padding: 0;
 }
 
 header {
   background-color: #f5ba13;
-  margin: auto;
-  padding: 32px;
+  margin: auto -16px;
+  padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
 
