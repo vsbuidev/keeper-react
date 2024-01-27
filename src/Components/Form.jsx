@@ -23,12 +23,29 @@ function Form(props) {
     });
   }
 
+  function showAlert() {
+    const div = document.createElement("div");
+    div.className = "alert error";
+    div.appendChild(document.createTextNode("Please add all Fields!."));
+    const createArea = document.querySelector(".create-area");
+    const form = document.querySelector("create-note");
+    createArea.insertBefore(div, form);
+
+    setTimeout(() => {
+      document.querySelector(".alert").remove();
+    }, 3000);
+  }
+
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: "",
-    });
+    if (note.title === "" || note.content === "") {
+      showAlert();
+    } else {
+      props.onAdd(note);
+      setNote({
+        title: "",
+        content: "",
+      });
+    }
     event.preventDefault();
   }
 
@@ -37,7 +54,7 @@ function Form(props) {
   }
 
   return (
-    <div>
+    <div className="create-area">
       <form className="create-note">
         {isExpanded && (
           <input
@@ -57,7 +74,7 @@ function Form(props) {
           rows={isExpanded ? 3 : 1}
         />
         <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
+          <Fab onClick={submitNote} color="primary">
             <AddIcon />
           </Fab>
         </Zoom>
